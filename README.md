@@ -10,6 +10,8 @@
 
 A contact form application deployed on Amazon EKS Auto Mode with persistent MySQL storage using EBS CSI driver and Application Load Balancer (ALB) ingress.
 
+**Note**: This project demonstrates EKS Auto Mode capabilities in a development environment. For production deployments, consider additional security hardening, monitoring, and backup strategies.
+
 ## 🏗️ Architecture Overview
 
 This project demonstrates a modern cloud-native application architecture leveraging:
@@ -21,7 +23,7 @@ This project demonstrates a modern cloud-native application architecture leverag
 - **MySQL Database** - Persistent data storage with encrypted EBS volumes
 - **phpMyAdmin** - Database management interface
 
-## 🚀 Why EKS Auto Mode?
+## Why EKS Auto Mode?
 
 EKS Auto Mode represents a paradigm shift in Kubernetes management on AWS:
 
@@ -51,6 +53,7 @@ eks-auto-mode/
 │   │   └── locals.tf
 │   └── network/                # VPC and networking
 │       ├── main.tf
+|       ├── variables.tf
 │       └── outputs.tf
 ├── kubernetes/                 # Kubernetes manifests
 │   ├── alb-ingressclass.yaml
@@ -66,7 +69,7 @@ eks-auto-mode/
 └── terraform.tfvars
 ```
 
-## 🛠️ Infrastructure Components
+## Infrastructure Components
 
 ### Terraform Configuration
 
@@ -125,7 +128,7 @@ spec:
   - arn:aws:acm:region:account:certificate/cert-id
 ```
 
-## 🚀 Deployment Guide
+## Deployment Guide
 
 ### Prerequisites
 - AWS CLI configured with appropriate permissions
@@ -147,7 +150,7 @@ terraform apply
 
 ### Step 2: Configure kubectl
 ```bash
-aws eks update-kubeconfig --region eu-west-2 --name sandbox-eks-cluster
+aws eks update-kubeconfig --region eu-west-2 --name <clustername/>
 ```
 
 ### Step 3: Deploy Kubernetes Resources
@@ -182,15 +185,14 @@ kubectl get pods
 kubectl get services
 ```
 
-## 📊 Application Components
+## Application Components
 
 ### Contact Form Application
 - **Image**: `oluwaseuna/k8s-contactform:1.0`
 - **Language**: PHP
-- **Features**: Form validation, email integration via AWS SES
+- **Features**: Form validation
 - **Endpoints**: 
   - `/` - Contact form interface
-  - Health checks and metrics
 
 ### MySQL Database
 - **Version**: 8.4.5
@@ -200,10 +202,10 @@ kubectl get services
 
 ### phpMyAdmin
 - **Purpose**: Database administration interface
-- **Access**: `sql.dev.teachdev.online`
+- **Access**: `sql.classof25.online`
 - **Security**: Kubernetes secrets for authentication
 
-## 🔒 Security Features
+## Security Features
 
 ### Network Security
 - Private subnets for worker nodes
@@ -220,19 +222,14 @@ kubectl get services
 - Kubernetes RBAC (future enhancement)
 - VPC isolation
 
-## 📈 Monitoring and Observability
+## Monitoring and Observability
 
 ### Built-in Monitoring
 - CloudWatch Container Insights (auto-enabled)
 - EKS control plane logging
 - ALB access logs and metrics
 
-### Application Metrics
-- Pod resource utilization
-- Database connection metrics
-- HTTP response times and error rates
-
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -273,30 +270,14 @@ kubectl logs -l app=php-app
 kubectl exec -it deployment/mysql-db -- df -h
 ```
 
-## 🌐 Access URLs
+## Access URLs
 
-- **Contact Form**: https://form.dev.teachdev.online
-- **Database Admin**: https://sql.dev.teachdev.online
+- **Contact Form**: https://form.classof25.online
+- **Database Admin**: https://sql.classof25.online
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
 - [Docker Hub - Contact Form Image](https://hub.docker.com/r/oluwaseuna/k8s-contactform)
 - [MySQL Official Documentation](https://dev.mysql.com/doc/)
 - [AWS CLI Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-**Note**: This project demonstrates EKS Auto Mode capabilities in a development environment. For production deployments, consider additional security hardening, monitoring, and backup strategies.
