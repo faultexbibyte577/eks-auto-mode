@@ -1,0 +1,11 @@
+.terraform
+
+.terraform.lock.hcl
+
+install-*
+
+kubectl-*
+
+test-*
+
+tfplan

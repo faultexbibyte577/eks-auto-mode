@@ -1,0 +1,21 @@
+apiVersion: eks.amazonaws.com/v1
+kind: IngressClassParams
+metadata:
+  name: alb
+spec:
+  scheme: internet-facing
+  ipAddressType: ipv4
+  group:
+    name: contactform
+  certificateARNs:
+  - arn:aws:acm:eu-west-2:093926026932:certificate/4169a4f5-b33d-4b50-874f-338b748314b6
+  tags:
+  - key: Environment
+    value: dev
+  - key: Project
+    value: sandbox-deployment
+  loadBalancerAttributes:
+  - key: idle_timeout.timeout_seconds
+    value: "60"
+  - key: routing.http2.enabled
+    value: "true"
